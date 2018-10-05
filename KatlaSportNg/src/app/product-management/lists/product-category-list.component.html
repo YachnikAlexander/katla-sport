@@ -11,10 +11,11 @@
     </thead>
     <tbody>
       <tr *ngFor="let productCategory of productCategories">
+      	<th scope="col">Products</th>
         <th scope="row">{{productCategory.id}}</th>
         <td>{{productCategory.code}}</td>
         <td>{{productCategory.name}}</td>
-        <!-- TODO STEP 4 - Add row cell here. -->
+        <td>{{productCategory.productCount}}</td>
         <td>{{productCategory.lastUpdated}}</td>
         <td>
           <span class="btn-toolbar" role="toolbar" aria-label="Product category action buttons" style="display: block; white-space:nowrap;">

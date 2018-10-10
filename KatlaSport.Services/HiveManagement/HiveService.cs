@@ -127,12 +127,12 @@ namespace KatlaSport.Services.HiveManagement
                 throw new RequestedResourceNotFoundException();
             }
 
-            var dbHive = dbHives[0];
-            if (dbHive.IsDeleted != deletedStatus)
+            var dbHiveInf = dbHives[0];
+            if (dbHiveInf.IsDeleted != deletedStatus)
             {
-                dbHive.IsDeleted = deletedStatus;
-                dbHive.LastUpdated = DateTime.UtcNow;
-                dbHive.LastUpdatedBy = _userContext.UserId;
+                dbHiveInf.IsDeleted = deletedStatus;
+                dbHiveInf.LastUpdated = DateTime.UtcNow;
+                dbHiveInf.LastUpdatedBy = _userContext.UserId;
                 await _context.SaveChangesAsync();
             }
         }

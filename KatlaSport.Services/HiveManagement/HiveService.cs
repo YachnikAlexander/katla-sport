@@ -57,7 +57,7 @@ namespace KatlaSport.Services.HiveManagement
         /// <inheritdoc/>
         public async Task<Hive> CreateHiveAsync(UpdateHiveRequest createRequest)
         {
-            var dbHives = await _context.Hives.Where(h => h.Code == createRequest.Code).ToArrayAsync();
+            var dbHives =  await _context.Hives.Where(h => h.Code == createRequest.Code).ToArrayAsync();
             if (dbHives.Length > 0)
             {
                 throw new RequestedResourceHasConflictException("code");
@@ -68,7 +68,7 @@ namespace KatlaSport.Services.HiveManagement
             dbHive.LastUpdatedBy = _userContext.UserId;
             _context.Hives.Add(dbHive);
 
-            await _context.SaveChangesAsync();
+            await  _context.SaveChangesAsync();
 
             return Mapper.Map<Hive>(dbHive);
         }
@@ -76,13 +76,13 @@ namespace KatlaSport.Services.HiveManagement
         /// <inheritdoc/>
         public async Task<Hive> UpdateHiveAsync(int hiveId, UpdateHiveRequest updateRequest)
         {
-            var dbHives = await _context.Hives.Where(p => p.Code == updateRequest.Code && p.Id != hiveId).ToArrayAsync();
+            var dbHives = await  _context.Hives.Where(p => p.Code == updateRequest.Code && p.Id != hiveId).ToArrayAsync();
             if (dbHives.Length > 0)
             {
                 throw new RequestedResourceHasConflictException("code");
             }
 
-            dbHives = await _context.Hives.Where(p => p.Id == hiveId).ToArrayAsync();
+            dbHives = await  _context.Hives.Where(p => p.Id == hiveId).ToArrayAsync();
             if (dbHives.Length == 0)
             {
                 throw new RequestedResourceNotFoundException();
@@ -101,7 +101,7 @@ namespace KatlaSport.Services.HiveManagement
         /// <inheritdoc/>
         public async Task DeleteHiveAsync(int hiveId)
         {
-            var dbHives = await _context.Hives.Where(p => p.Id == hiveId).ToArrayAsync();
+            var dbHives = await  _context.Hives.Where(p => p.Id == hiveId).ToArrayAsync();
             if (dbHives.Length == 0)
             {
                 throw new RequestedResourceNotFoundException();
@@ -113,7 +113,7 @@ namespace KatlaSport.Services.HiveManagement
                 throw new RequestedResourceHasConflictException();
             }
 
-            _context.Hives.Remove(dbHive);
+             _context.Hives.Remove(dbHive);
             await _context.SaveChangesAsync();
         }
 

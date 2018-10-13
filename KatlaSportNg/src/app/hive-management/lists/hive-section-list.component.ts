@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { HiveSectionListItem } from '../models/hive-section-list-item';
 import { HiveService } from '../services/hive.service';
+import { HiveSectionService } from '../services/hive-section.service';
+
 
 @Component({
   selector: 'app-hive-section-list',
